@@ -1,0 +1,5 @@
+https://github.com/davidsd/sdpb | language: C++
+https://gitlab.com/bootstrapcollaboration/blocks_3d | 2011.01959
+https://gitlab.com/rajeev.erramilli/upgrading-extremal-flow-prototype | 2604.24839 | language: Mathematica
+https://gitlab.com/davidsd/fermions-3d | 2210.02492
+https://gitlab.com/davidsd/stress-tensors-3d | 2411.15300 2602.13383

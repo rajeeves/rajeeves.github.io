@@ -1,0 +1,71 @@
+[
+ {
+  "url": "https://github.com/davidsd/sdpb",
+  "host": "github.com",
+  "path": "davidsd/sdpb",
+  "note": null,
+  "papers": [],
+  "language_override": "C++",
+  "name": null,
+  "language": "C++",
+  "web_url": null,
+  "fetched": false
+ },
+ {
+  "url": "https://gitlab.com/bootstrapcollaboration/blocks_3d",
+  "host": "gitlab.com",
+  "path": "bootstrapcollaboration/blocks_3d",
+  "note": null,
+  "papers": [
+   "2011.01959"
+  ],
+  "language_override": null,
+  "name": "blocks_3d",
+  "language": "C++",
+  "web_url": "https://gitlab.com/bootstrapcollaboration/blocks_3d",
+  "fetched": true
+ },
+ {
+  "url": "https://gitlab.com/rajeev.erramilli/upgrading-extremal-flow-prototype",
+  "host": "gitlab.com",
+  "path": "rajeev.erramilli/upgrading-extremal-flow-prototype",
+  "note": null,
+  "papers": [
+   "2604.24839"
+  ],
+  "language_override": "Mathematica",
+  "name": "Upgrading extremal flow prototype",
+  "language": "Mathematica",
+  "web_url": "https://gitlab.com/rajeev.erramilli/upgrading-extremal-flow-prototype",
+  "fetched": true
+ },
+ {
+  "url": "https://gitlab.com/davidsd/fermions-3d",
+  "host": "gitlab.com",
+  "path": "davidsd/fermions-3d",
+  "note": null,
+  "papers": [
+   "2210.02492"
+  ],
+  "language_override": null,
+  "name": "fermions-3d",
+  "language": "Haskell",
+  "web_url": "https://gitlab.com/davidsd/fermions-3d",
+  "fetched": true
+ },
+ {
+  "url": "https://gitlab.com/davidsd/stress-tensors-3d",
+  "host": "gitlab.com",
+  "path": "davidsd/stress-tensors-3d",
+  "note": null,
+  "papers": [
+   "2411.15300",
+   "2602.13383"
+  ],
+  "language_override": null,
+  "name": "stress-tensors-3d",
+  "language": "Haskell",
+  "web_url": "https://gitlab.com/davidsd/stress-tensors-3d",
+  "fetched": true
+ }
+]

@@ -1,0 +1,211 @@
+[
+ {
+  "inspire_id": 3203023,
+  "title": "Bootstrapping currents and stress tensors in 3d CFTs",
+  "authors": [
+   "Dommes, Vasiliy",
+   "Erramilli, Rajeev S.",
+   "Flynn, Colum",
+   "Homrich, Alexandre",
+   "Kravchuk, Petr",
+   "Poland, David",
+   "Simmons-Duffin, David",
+   "Zhou, George Yuzhe"
+  ],
+  "arxiv": "2609.13370",
+  "doi": null,
+  "journal": {},
+  "date": "2026-09-11",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 3149816,
+  "title": "Upgrading Extremal Flows in the Space of Derivatives",
+  "authors": [
+   "Erramilli, Rajeev S."
+  ],
+  "arxiv": "2604.24839",
+  "doi": null,
+  "journal": {},
+  "date": "2026-04-27",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 3120660,
+  "title": "Towards 3D CFT Cartography with the Stress Tensor Bootstrap",
+  "authors": [
+   "Erramilli, Rajeev S.",
+   "Mitchell, Matthew S."
+  ],
+  "arxiv": "2602.13383",
+  "doi": null,
+  "journal": {},
+  "date": "2026-02-13",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 2966966,
+  "title": "Do null defects dream of conformal symmetry?",
+  "authors": [
+   "Erramilli, Rajeev S.",
+   "Kulp, Justin",
+   "Popov, Fedor K."
+  ],
+  "arxiv": "2509.04578",
+  "doi": "10.1007/JHEP10(2026)095",
+  "journal": {
+   "journal_title": "JHEP",
+   "journal_volume": "10",
+   "year": 2026,
+   "artid": "095",
+   "page_start": "095"
+  },
+  "date": "2025-09-04",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 2851637,
+  "title": "Bootstrapping the 3d Ising stress tensor",
+  "authors": [
+   "Chang, Cyuan-Han",
+   "Dommes, Vasiliy",
+   "Erramilli, Rajeev S.",
+   "Homrich, Alexandre",
+   "Kravchuk, Petr",
+   "Liu, Aike",
+   "Mitchell, Matthew S.",
+   "Poland, David",
+   "Simmons-Duffin, David"
+  ],
+  "arxiv": "2411.15300",
+  "doi": "10.1007/JHEP03(2025)136",
+  "journal": {
+   "journal_title": "JHEP",
+   "journal_volume": "03",
+   "year": 2025,
+   "artid": "136",
+   "page_start": "136"
+  },
+  "date": "2024-11-22",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 2846690,
+  "title": "Bootstrapping Fermionic Conformal Field Theories",
+  "authors": [
+   "Erramilli, Rajeev S."
+  ],
+  "arxiv": null,
+  "doi": null,
+  "journal": {},
+  "date": "2024-11-09",
+  "type": [
+   "thesis"
+  ]
+ },
+ {
+  "inspire_id": 2161649,
+  "title": "The Gross-Neveu-Yukawa archipelago",
+  "authors": [
+   "Erramilli, Rajeev S.",
+   "Iliesiu, Luca V.",
+   "Kravchuk, Petr",
+   "Liu, Aike",
+   "Poland, David",
+   "Simmons-Duffin, David"
+  ],
+  "arxiv": "2210.02492",
+  "doi": "10.1007/JHEP02(2023)036",
+  "journal": {
+   "journal_title": "JHEP",
+   "journal_volume": "02",
+   "year": 2023,
+   "artid": "036",
+   "page_start": "036"
+  },
+  "date": "2022-10-05",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 1984752,
+  "title": "Bootstrapping $N_f$=4 conformal QED$_3$",
+  "authors": [
+   "Albayrak, Soner",
+   "Erramilli, Rajeev S.",
+   "Li, Zhijin",
+   "Poland, David",
+   "Xin, Yuan"
+  ],
+  "arxiv": "2112.02106",
+  "doi": "10.1103/PhysRevD.105.085008",
+  "journal": {
+   "journal_title": "Phys.Rev.D",
+   "journal_volume": "105",
+   "year": 2022,
+   "artid": "085008"
+  },
+  "date": "2021-12-03",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 1828185,
+  "title": "blocks_3d: software for general 3d conformal blocks",
+  "authors": [
+   "Erramilli, Rajeev S.",
+   "Iliesiu, Luca V.",
+   "Kravchuk, Petr",
+   "Landry, Walter",
+   "Poland, David",
+   "Simmons-Duffin, David"
+  ],
+  "arxiv": "2011.01959",
+  "doi": "10.1007/JHEP11(2021)006",
+  "journal": {
+   "journal_title": "JHEP",
+   "journal_volume": "11",
+   "year": 2021,
+   "artid": "006",
+   "page_start": "006"
+  },
+  "date": "2020-11-03",
+  "type": [
+   "article"
+  ]
+ },
+ {
+  "inspire_id": 1746458,
+  "title": "Recursion relation for general 3d blocks",
+  "authors": [
+   "Erramilli, Rajeev S.",
+   "Iliesiu, Luca V.",
+   "Kravchuk, Petr"
+  ],
+  "arxiv": "1907.11247",
+  "doi": "10.1007/JHEP12(2019)116",
+  "journal": {
+   "journal_title": "JHEP",
+   "journal_volume": "12",
+   "year": 2019,
+   "artid": "116",
+   "page_start": "116"
+  },
+  "date": "2019-07-25",
+  "type": [
+   "article"
+  ]
+ }
+]

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+{{PALETTES_CSS}}
+{{FONTS_CSS}}
+{{BODYFONTS_CSS}}
+:root {
+  --serif: "IBM Plex Serif", Georgia, serif; --bstrong: 600;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --step-0: 1.125rem; --step-1: 1.45rem; --id-size: clamp(1.7rem, 1.1rem + 2.2vw, 2.6rem); --small: 0.8rem;
+  --dfont: "Fira Code", ui-monospace, Menlo, Consolas, monospace; --dweight: 300; --dtrack: -0.01em; --dstretch: 100%;
+}
+
+html { background: var(--bg); }
+body { background: var(--bg); color: var(--fg); font: 400 var(--step-0)/1.6 var(--serif); font-size-adjust: 0.475;
+  font-optical-sizing: auto; margin: 0; transition: background-color .25s, color .25s; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg); }
+
+.shell { display: grid; grid-template-columns: clamp(220px, 30vw, 440px) minmax(0, 1fr); min-height: 100vh; }
+.lattice { position: sticky; top: 0; height: 100vh; border-right: 1px solid var(--rule); }
+.lattice canvas { position: relative; display: block; width: 100%; height: 100%; visibility: hidden; }
+.lattice canvas.ising-on { visibility: visible; }
+.lattice:has(> canvas.ising-on) > .ising-still { display: none; }
+
+:root { --site: 1px; }
+@media (min-resolution: 1.5dppx) { :root { --site: 0.5px; } }
+@media (min-resolution: 2.5dppx) { :root { --site: calc(1px / 3); } }
+.ising-still { position: absolute; inset: 0; overflow: hidden; background: #000; filter: url(#ising-recolour); }
+.ising-still::before { content: ""; position: absolute; inset: 0; image-rendering: pixelated;
+  background: url("ising/l0.png") center / calc(2048 * var(--site)) calc(4096 * var(--site)) no-repeat; }
+@supports (animation-timeline: scroll()) {
+  .ising-still::before { animation: ising-zoom linear both; animation-timeline: scroll(root); }
+  @keyframes ising-zoom { from { background-size: calc(2048 * var(--site)) calc(4096 * var(--site)); }
+                          to { background-size: calc(16384 * var(--site)) calc(32768 * var(--site)); } }
+}
+@media (prefers-reduced-motion: reduce) { .ising-still::before { animation: none; } }
+
+.page { min-width: 0; padding-block: 1.5rem 45vh;
+  padding-left: max(16px, env(safe-area-inset-left, 0px), 4vw);
+  padding-right: max(16px, env(safe-area-inset-right, 0px), 4vw); }
+.col { max-width: 36rem; display: grid; gap: 3rem; }
+
+.idbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 3; background: var(--bg);
+  padding-block: 1.25rem 0.9rem; margin-bottom: -1.5rem; transition: background-color .25s; }
+.idbar::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 1.25rem;
+  background: linear-gradient(var(--bg), color-mix(in oklab, var(--bg), transparent 100%)); pointer-events: none; }
+.idbar h1 { margin: 0; font-size: var(--id-size); line-height: 1.15; font-weight: var(--dweight);
+  font-family: var(--dfont); letter-spacing: var(--dtrack); font-stretch: var(--dstretch); color: var(--display); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.morph { position: relative; display: inline-block; height: 1.15em; vertical-align: top; max-width: 100%; }
+.morph-layer, .morph-measure { position: absolute; left: 0; top: 0; white-space: pre; }
+.morph-measure { visibility: hidden; }
+.morph-measure .g { position: static; }
+.morph-layer .g { position: absolute; left: 0; top: 0; white-space: pre; will-change: transform, opacity;
+  transition: transform .62s cubic-bezier(.2, .75, .2, 1), opacity .42s ease, text-decoration-color .15s ease-out;
+  text-decoration: underline; text-decoration-color: transparent;
+  text-decoration-thickness: 0.06em; text-underline-offset: 0.18em; }
+.morph.settled .morph-layer .g.st-email { text-decoration-color: var(--accent); }
+.morph { cursor: default; }
+.morph[data-state="email"] { cursor: pointer; }
+.morph:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+header { display: grid; gap: 1.5rem; }
+.intro { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.intro p { margin: 0 0 1em; }
+.intro p:last-child { margin-bottom: 0; }
+.photo-wrap { display: grid; gap: 0.5rem; align-content: start; }
+.notice { justify-self: start; margin: 0; padding: 0.3rem 0.65rem; border: 1px dashed var(--accent); border-radius: 2px;
+  font: 500 var(--small)/1.4 var(--mono); color: var(--accent); }
+
+section { display: grid; gap: 1rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+h2 { margin: 0; font-size: var(--step-1); font-weight: var(--bstrong); }
+.pyear, .pref, .hdates, .notice, .idbar h1 { font-size-adjust: none; }
+.papers { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.35rem; }
+.paper { display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 1rem; }
+.pyear { font: 400 var(--small)/1.9 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.pbody { display: grid; gap: 0.2rem; min-width: 0; }
+.ptitle { color: var(--fg); text-decoration: none; font-size: 1.05rem; line-height: 1.35; text-wrap: pretty; }
+.ptitle:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.ptitle math { font-size: 1.02em; }
+.pauthors { font-size: 0.88rem; line-height: 1.45; color: var(--muted); }
+.pauthors .me { color: var(--fg); }
+.pref { font: 400 var(--small)/1.5 var(--mono); color: var(--muted); }
+.pref a { color: var(--accent); text-decoration: none; }
+.pref a:hover { text-decoration: underline; }
+
+.swlang { font: 400 var(--small)/1.9 var(--mono); color: var(--muted); font-size-adjust: none; white-space: nowrap; }
+.papers.software { grid-template-columns: max-content minmax(0, 1fr); column-gap: 1rem; }
+.papers.software > .paper { grid-column: 1 / -1; grid-template-columns: subgrid; }
+.papers.software .pref, .papers.software .ptitle { overflow-wrap: anywhere; }
+.swnote { font-size: 0.88rem; line-height: 1.45; color: var(--muted); }
+
+.selected { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
+.sel { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.sel img, .selfig { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; background: var(--slot);
+  display: grid; place-items: center; }
+.selbody { display: grid; gap: 0.35rem; min-width: 0; }
+.selblurb { margin: 0; }
+.wiptitle { cursor: default; }
+.wiptitle:hover { color: var(--fg); text-decoration: none; }
+.selnote { font: 400 var(--small)/1.5 var(--mono); color: var(--muted); }
+@media (max-width: 760px) { .sel { grid-template-columns: 5rem minmax(0, 1fr); gap: 1rem; } }
+
+.history { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+.hrow { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline; }
+.hdates { font: 400 var(--small)/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.hbody { display: grid; min-width: 0; }
+.hinst { line-height: 1.4; }
+.hrole { font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+@media (max-width: 760px) { .hrow { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; } }
+
+.pointer { color: var(--accent); cursor: pointer; display: block; }
+.pointer path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .5s ease-out; }
+:root:has(.morph[data-state="email"].settled) .pointer path { stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: reduce) { .pointer path { transition: none; } }
+
+.photo { aspect-ratio: 1; max-width: 100%; background: var(--slot); border-radius: 2px;
+  display: grid; place-items: center; }
+
+#theme-toggle:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+#theme-toggle { position: fixed; z-index: 5; top: calc(14px + env(safe-area-inset-top, 0px));
+  right: calc(14px + env(safe-area-inset-right, 0px)); width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--rule); background: var(--bg); color: var(--fg); cursor: pointer;
+  display: grid; place-items: center; padding: 0; }
+
+@media (max-width: 760px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .lattice { position: sticky; top: 0; z-index: 4; height: 150px; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .idbar { top: calc(150px + env(safe-area-inset-top, 0px)); }
+  .page { padding-block: 0.5rem 50vh; }
+  .col { gap: 2.5rem; }
+  .intro { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .photo-wrap { width: 7rem; }
+}
+@media (prefers-reduced-motion: reduce) { body, .idbar, .morph-layer .g { transition: none; } }
+</style>
+<script src="js/theme.js"></script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="theme">
+  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+</button>
+
+<div class="shell">
+  <div class="lattice"><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="ising-recolour" color-interpolation-filters="sRGB" x="0" y="0" width="1" height="1"><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0"/><feComponentTransfer result="m"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer><feFlood style="flood-color: var(--spin-up)" result="up"/><feComposite in="up" in2="m" operator="in" result="u"/><feFlood style="flood-color: var(--spin-down)" result="dn"/><feComposite in="u" in2="dn" operator="over"/></filter></svg><div class="ising-still" aria-hidden="true"></div><canvas id="rg" aria-hidden="true"></canvas></div>
+
+  <main class="page">
+    <div class="col">
+      <div class="idbar">
+        <h1><span class="sr">{{NAME}}</span><span class="morph" aria-hidden="true" data-url="{{TITLE}}" data-name="{{NAME}}"></span></h1>
+      </div>
+
+      <header>
+        <p class="notice">{{NOTICE}}</p>
+        <div class="intro">
+          <div class="photo-wrap">
+            <div class="photo"></div>
+          </div>
+          <div>
+            <p>{{BIO1}}</p>
+            <p>{{BIO2}}</p>
+          </div>
+        </div>
+      </header>
+
+      <section id="selected">
+        <h2>{{SELECTED_HEADING}}</h2>
+        <ol class="selected">
+{{SELECTED_HTML}}        </ol>
+      </section>
+
+      <section id="papers">
+        <h2>{{PAPERS_HEADING}}</h2>
+        <ol class="papers">
+{{PAPERS_HTML}}        </ol>
+      </section>
+
+      <section id="software">
+        <h2>{{SOFTWARE_HEADING}}</h2>
+        <ol class="papers software">
+{{SOFTWARE_HTML}}        </ol>
+      </section>
+
+      <section id="history">
+        <h2>{{HISTORY_HEADING}}</h2>
+        <ol class="history">
+{{HISTORY_HTML}}        </ol>
+      </section>
+
+      <section id="contact">
+        <svg class="pointer" viewBox="0 0 24 64" width="24" height="64" aria-hidden="true">
+          <path pathLength="1" d="M12 62 V3 M3 12 L12 3 L21 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script src="js/ising.js"></script>
+<script src="js/morph.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
