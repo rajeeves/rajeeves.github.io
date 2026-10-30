@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{TITLE}}</title>
+<link rel="canonical" href="{{CANONICAL}}">
+<script type="application/ld+json">
+{{PERSON_JSONLD}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -78,7 +82,7 @@ header { display: grid; gap: 1.5rem; }
 
 section { display: grid; gap: 1rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
 h2 { margin: 0; font-size: var(--step-1); font-weight: var(--bstrong); }
-.pyear, .pref, .hdates, .notice, .idbar h1 { font-size-adjust: none; }
+.pyear, .pref, .hdates, .notice, .links, .idbar h1 { font-size-adjust: none; }
 .papers { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.35rem; }
 .paper { display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 1rem; }
 .pyear { font: 400 var(--small)/1.9 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -121,6 +125,9 @@ h2 { margin: 0; font-size: var(--step-1); font-weight: var(--bstrong); }
 .pointer path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .5s ease-out; }
 :root:has(.morph[data-state="email"].settled) .pointer path { stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: reduce) { .pointer path { transition: none; } }
+.links { margin: 0; font: 400 var(--small)/1.8 var(--mono); color: var(--muted); }
+.links a { color: var(--accent); text-decoration: none; }
+.links a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 
 .photo { aspect-ratio: 1; max-width: 100%; background: var(--slot); border-radius: 2px;
   display: grid; place-items: center; }
@@ -199,6 +206,7 @@ h2 { margin: 0; font-size: var(--step-1); font-weight: var(--bstrong); }
         <svg class="pointer" viewBox="0 0 24 64" width="24" height="64" aria-hidden="true">
           <path pathLength="1" d="M12 62 V3 M3 12 L12 3 L21 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
+        <p class="links">{{LINKS_HTML}}</p>
       </section>
     </div>
   </main>

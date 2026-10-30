@@ -1,4 +1,4 @@
-import html, pathlib, re, shutil, sys
+import html, json, pathlib, re, shutil, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import content_lib
 
@@ -16,7 +16,15 @@ hist = "".join(f'<li class="hrow"><span class="hdates">{html.escape(d)}</span><s
                + "".join(f'<span class="hrole">{html.escape(r)}</span>' for r in roles)
                + '</span></li>\n' for d, i, *roles in content_lib.history(content))
 
-parts = {"HISTORY_HTML": hist}
+links = content_lib.links(content)
+links_html = '<span class="sep"> · </span>'.join(
+    f'<a href="{html.escape(u, quote=True)}" rel="me">{html.escape(t)}</a>' for t, u in links)
+site = "https:" + (content / "title.txt").read_text("utf-8").strip()
+person = {"@context": "https://schema.org", "@type": "Person", "name": (content / "name.txt").read_text("utf-8").strip(),
+          "url": site, "sameAs": [u for _, u in links]}
+jsonld = json.dumps(person, ensure_ascii=False, indent=1).replace("</", "<\\/")
+
+parts = {"HISTORY_HTML": hist, "LINKS_HTML": links_html, "PERSON_JSONLD": jsonld, "CANONICAL": html.escape(site, quote=True)}
 for k, f in [("PALETTES_CSS", "palettes.css"), ("FONTS_CSS", "fonts.css"), ("BODYFONTS_CSS", "bodyfonts.css"),
              ("PAPERS_HTML", "papers.html"), ("SELECTED_HTML", "selected.html"), ("SOFTWARE_HTML", "software.html")]:
     parts[k] = (build / f).read_text("utf-8")
