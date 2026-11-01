@@ -24,7 +24,11 @@ person = {"@context": "https://schema.org", "@type": "Person", "name": (content 
           "url": site, "sameAs": [u for _, u in links]}
 jsonld = json.dumps(person, ensure_ascii=False, indent=1).replace("</", "<\\/")
 
-parts = {"HISTORY_HTML": hist, "LINKS_HTML": links_html, "PERSON_JSONLD": jsonld, "CANONICAL": html.escape(site, quote=True)}
+cv = content / "cv.pdf"
+cv_html = (f'<p class="cvlink"><a href="erramilli-cv.pdf">{html.escape((content / "cv-label.txt").read_text("utf-8"))}</a></p>'
+           if cv.exists() else "")
+
+parts = {"HISTORY_HTML": hist, "CV_HTML": cv_html, "LINKS_HTML": links_html, "PERSON_JSONLD": jsonld, "CANONICAL": html.escape(site, quote=True)}
 for k, f in [("PALETTES_CSS", "palettes.css"), ("FONTS_CSS", "fonts.css"), ("BODYFONTS_CSS", "bodyfonts.css"),
              ("PAPERS_HTML", "papers.html"), ("SELECTED_HTML", "selected.html"), ("SOFTWARE_HTML", "software.html")]:
     parts[k] = (build / f).read_text("utf-8")
@@ -40,4 +44,6 @@ if left:
 for d in ("js", "ising"):
     shutil.rmtree(out / d, ignore_errors=True)
     shutil.copytree(src / d, out / d)
+if cv.exists():
+    shutil.copyfile(cv, out / "erramilli-cv.pdf")
 print("out/index.html", len(page.encode()), "bytes")
